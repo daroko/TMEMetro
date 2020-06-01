@@ -20,7 +20,8 @@ namespace Metro.ViewModel
     {
     Preparation,
     Start,
-    End  
+    End,
+    InProgress
     }
 
     public class AccentColorMenuData
@@ -309,6 +310,7 @@ namespace Metro.ViewModel
             UiInvoke(() =>
             {
                 Iloscp = 20;
+                State = OperationState.InProgress;
             });
 
 
@@ -336,6 +338,7 @@ namespace Metro.ViewModel
             UiInvoke(() =>
             {
                 Iloscp = 100;
+                State = OperationState.End;
             });
 
 
@@ -347,7 +350,8 @@ namespace Metro.ViewModel
                 timeelapsed = stopwatch.Elapsed.TotalSeconds;
                 LeftNumbers();
                 Progress = false;
-                State = OperationState.End;
+                State = OperationState.Preparation;
+                Iloscp = 0;
                 ((MainWindow)Application.Current.MainWindow).Cursor = Cursors.Arrow;
             });
 

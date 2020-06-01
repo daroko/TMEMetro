@@ -120,10 +120,10 @@
             <StatusBarItem>
                 <Label   Style="{StaticResource MahApps.Styles.Label}" x:Name="infolabel6" Content="{Binding State,Mode=OneWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource EnumToStringConverter}}" HorizontalAlignment="Left" Margin="1" VerticalAlignment="Top" Width="80"/>
             </StatusBarItem>
-            
 
+            <Grid>
             <ProgressBar
-                             
+                                                x:Name="pbStatus"
                                                IsIndeterminate="false"
                                                Maximum="100"
                                                Minimum="0"  
@@ -131,9 +131,8 @@
                                                Visibility="Visible"                                         
                                                Value="{Binding Iloscp, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
                                                Height="25" VerticalAlignment="Top" />
-
-            <!-- Visibility="{Binding Progress, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,FallbackValue=Hidden,Converter={StaticResource BooleanToVisibilityConverter} }" -->
-            <!-- <StatusBarItem Content="{Binding ElementName=MainTabControl, Path=SelectedItem.Header, Mode=OneWay}" /> -->
+            <TextBlock Text="{Binding ElementName=pbStatus, Path=Value, StringFormat={}{0:0}%}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Grid>
         </StatusBar>
 
 
