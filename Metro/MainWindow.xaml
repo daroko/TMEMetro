@@ -60,6 +60,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             
@@ -102,6 +103,14 @@
                     <StackPanel Orientation="Horizontal">
                         <Label   Style="{StaticResource MahApps.Styles.Label}" x:Name="infolabel8" Content="Wyczyść tabele z numerami" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="165"/>
                         <Button  Style="{StaticResource MahApps.Styles.Button}" Command="{Binding ClearTableNumber}"  IsEnabled="{Binding ProgressBlock, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"   x:Name="buttonWyczysc" Content="Wyczyść" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="75" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <Border Grid.Row="5" Margin="0,10,0,0">
+                <Grid>
+                    <StackPanel Orientation="Horizontal">
+                        <Label   Style="{StaticResource MahApps.Styles.Label}" x:Name="infolabel90" Content="Wypełnij tabele w 99%" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="165"/>
+                        <Button  Style="{StaticResource MahApps.Styles.Button}" Command="{Binding Generate99procent}"  IsEnabled="{Binding ProgressBlock, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"   x:Name="buttonzapełnij" Content="Wypełnij" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="75" />
                     </StackPanel>
                 </Grid>
             </Border>

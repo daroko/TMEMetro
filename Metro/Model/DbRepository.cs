@@ -20,6 +20,10 @@ namespace Metro.Model
         {
             return _dbMenager.GetTableInt("SELECT UsedNumber FROM numbers");
         }
+        public List<int> GetUsedNumbersCount()
+        {
+            return _dbMenager.GetTableInt("SELECT count(*) as UsedNumber FROM numbers");
+        }
 
         public string CheckVersion()
         {

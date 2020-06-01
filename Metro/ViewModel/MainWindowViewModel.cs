@@ -181,6 +181,7 @@ namespace Metro.ViewModel
         public ICommand ClearTableNumber { get; set; }
 
         public ICommand GenerateNumber { get; set; }
+        public ICommand Generate99procent { get; set; }
 
         public List<AccentColorMenuData> AccentColors { get; set; }
         public List<AppThemeMenuData> AppThemes { get; set; }
@@ -208,6 +209,13 @@ namespace Metro.ViewModel
             this.GenerateNumber = new SimpleCommand(o => Ilosc > 0 ? true : false, b => {  Task.Run(() => this.GenerateNumbers()); });
 
             this.ClearTableNumber = new SimpleCommand(o => true, b => { Task.Run(() => ClearTable()); });
+
+
+            this.Generate99procent = new SimpleCommand(o => true, b => { Task.Run(() => { ClearTable(false); this.GenerateNumbers(9909999);}); });
+
+
+
+            
 
 
             this.AccentColors = ThemeManager.Current.Themes
@@ -245,7 +253,7 @@ namespace Metro.ViewModel
             if (reposytory != null)
             {
                 float max = 8999999;
-                float numbers = reposytory.GetUsedNumbers().Count;
+                float numbers = reposytory.GetUsedNumbersCount().First();
                 RemainedNumbers = (int)max - (int)numbers;
                 if (numbers > 0)
                 {
@@ -262,7 +270,7 @@ namespace Metro.ViewModel
         
 
 
-        private void ClearTable()
+        private void ClearTable(bool isinfo=true)
         {
 
             if (reposytory.ClearTable())
@@ -271,6 +279,7 @@ namespace Metro.ViewModel
                 {
                     LeftNumbers();
                     timeelapsed = 0;
+                    if(isinfo)
                      ((MainWindow)Application.Current.MainWindow).ShowMessageAsync("Informacja", "Tabela wyczyszczona");
      
                 });
@@ -279,7 +288,7 @@ namespace Metro.ViewModel
 
         }
 
-        private void GenerateNumbers()
+        private void GenerateNumbers(int numbers99=0)
         {
             if (reposytory == null || RemainedNumbers == 0)
             {
@@ -315,7 +324,7 @@ namespace Metro.ViewModel
 
 
             List<int> emptyValues = new List<int>();
-            emptyValues = GenerateEmptyList();
+            emptyValues = GenerateEmptyList(numbers99);
 
             UiInvoke(() =>
             {
@@ -327,6 +336,7 @@ namespace Metro.ViewModel
             {
                 Iloscp = 60;
             });
+
 
             var numberRandom = GenerateRandomList(listNumbertoRand);
             UiInvoke(() =>
@@ -371,11 +381,18 @@ namespace Metro.ViewModel
             return numberRandom;
         }
 
-        private List<int> GenerateEmptyList()
+        private List<int> GenerateEmptyList(int numbers99=0)
         {
             List<int> myValues;
             int defaultValue = 1000000;
-            myValues = RangeIncrement(defaultValue, 9999999, 1);
+            if (numbers99 > 0)
+            {
+                myValues = RangeIncrement(defaultValue, numbers99, 1);
+                Ilosc = numbers99 - defaultValue;
+            }
+            else
+                myValues = RangeIncrement(defaultValue, 9999999, 1);
+
 
             return myValues;
         }
