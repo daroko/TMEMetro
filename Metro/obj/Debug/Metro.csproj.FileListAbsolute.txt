@@ -70,3 +70,4 @@ C:\Users\daroko\TMEMetro\Metro\obj\Debug\Metro.csproj.CoreCompileInputs.cache
 C:\Users\daroko\TMEMetro\Metro\obj\Debug\Metro.csproj.CopyComplete
 C:\Users\daroko\TMEMetro\Metro\obj\Debug\Metro.exe
 C:\Users\daroko\TMEMetro\Metro\obj\Debug\Metro.pdb
+C:\Users\daroko\TMEMetro\Metro\obj\Debug\Metro.csprojAssemblyReference.cache
